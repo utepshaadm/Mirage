@@ -14,12 +14,19 @@ class Mirage:
          return self.values[x]
          
     def ksa(self):
-         val = self.get_val(self.deck[0])
-         for x in range(val):
-         	   self.deck.append(self.deck.pop(0))
-         	   self.deck.insert(3, self.deck.pop(0))
          self.deck.append(self.deck.pop(0))
-         return self.deck[0] % 26
+         self.deck.append(self.deck.pop(0))
+         
+         card1 = self.get_val(self.deck[0])
+         card2 = self.get_val(self.deck[1])
+         for x in range(card1):
+               self.deck.append(self.deck.pop(card2))
+         v = self.get_val(self.deck[0])
+         for x in range(v):
+         	self.deck.append(self.deck.pop(0))
+         z = self.get_val(self.deck[0])
+         y = self.get_val(self.deck[z])
+         return self.deck[z + y] % 26
          
     def encrypt_letter(self, letter):
         key = self.ksa()
@@ -46,10 +53,3 @@ class Mirage:
             letter = self.decrypt_letter(letters[x])
             ptxt.append(letter)
         return "".join(ptxt)
-        
-mirage = Mirage()
-mirage.gen_rand_decks()
-m = [chr(65)] * 100000
-msg = "".join(m)
-ctxt = mirage.encrypt(msg)
-print(ctxt)
