@@ -19,13 +19,14 @@ class Mirage:
          
          card1 = self.get_val(self.deck[0])
          card2 = self.get_val(self.deck[1])
-         total = card1 + card2
+
          for x in range(card1):
                self.deck.append(self.deck.pop(card2))
          v = self.get_val(self.deck[0])
          for x in range(v):
          	self.deck.append(self.deck.pop(0))
-         return self.deck[total] % 26
+         z = self.get_val(self.deck[0])
+         return self.deck[v + z] % 26
          
     def encrypt_letter(self, letter):
         key = self.ksa()
